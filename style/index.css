@@ -1,0 +1,280 @@
+
+#login-form, #register-form {
+  display: flex;
+  flex-direction: column;
+}
+#download-btn,#register-form,#download-btn,#extracted-message{
+  display: none;
+}
+#extracted-message{
+    margin-top: 10px;
+}
+#result-canvas{
+    display: none;
+    margin-top: 10px;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("./pictures/blurry-gradient-haikei\ \(2\).svg");
+  background-repeat: no-repeat; 
+  background-size: 100% 100%; 
+  background-position: center;
+  min-height: 100vh; 
+}
+
+h1, h2, h3 {
+  color: #020d0c; 
+  text-align: center;
+}
+
+.point {
+  cursor: pointer;
+}
+#auth-section {
+  background-color: #8cbaf3; 
+  padding: 30px; 
+  border-radius: 12px; 
+  box-shadow: 0 4px 12px rgba(92, 130, 238, 0.2);
+  width: 100%;
+  max-width: 400px; 
+  margin: 0 auto; 
+}
+#main-section {
+  background-color: #8cbaf3; 
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(92, 130, 238, 0.2); 
+  width: 100%;
+  max-width: 500px; 
+  margin: 0 auto;
+  display: none; 
+}
+
+
+#login-form, #register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+.log-status{
+  text-align: center;
+}
+
+input {
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f6fefd; 
+  border: 1px solid #5d82ee; 
+  border-radius: 8px; 
+  color: #020d0c;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2eeace; 
+}
+
+#main-section, #register-form {
+  display: none;
+}
+
+#image-processing {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Більше простору */
+  align-items: center;
+}
+
+#image-processing select, #image-processing textarea {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f6fefd; /* --background */
+  border: 1px solid #5d82ee; /* --accent */
+  border-radius: 10px;
+  width: 100%;
+  color: #020d0c; /* --text */
+}
+
+#image-processing select:focus, #image-processing textarea:focus {
+  outline: none;
+  border-color: #2eeace; /* --primary */
+}
+
+#message-input {
+  resize: vertical;
+}
+
+#result-canvas {
+  display: none;
+  margin-top: 10px;
+  max-width: 100%;
+  background-color: #f6fefd; /* --background */
+  border: 1px solid #5d82ee; /* --accent */
+  border-radius: 4px;
+}
+
+#extracted-message {
+  display: none;
+  margin-top: 10px;
+  background-color: #f6fefd; /* --background */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #5d82ee; /* --accent */
+  width: 100%;
+  text-align: center;
+  color: #020d0c; /* --text */
+}
+
+#history-section {
+  margin-top: 20px;
+  background-color: #8cbaf3; /* --secondary */
+  padding: 25px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(92, 130, 238, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+#history-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+#history-section li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(92, 130, 238, 0.3); /* М’яка межа */
+  color: #020d0c; /* --text */
+}
+
+input, button, select, textarea {
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #2eeace; 
+  color: #020d0c; 
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+button:hover {
+  background-color: #1ab8a8; 
+}
+
+#embed-btn {
+  background-color: #589ff5; /* --secondary */
+  color: #020d0c; /* --text */
+}
+#embed-btn:hover {
+  background-color: #1065dd; /* Темніший відтінок */
+}
+
+#extract-btn {
+  background-color: #2eeace; /* --primary */
+  color: #020d0c; /* --text */
+}
+#extract-btn:hover {
+  background-color: #1ab8a8; /* Темніший відтінок */
+}
+
+button:where(#image-processing button:not(#embed-btn, #extract-btn)) {
+  background-color: #5d82ee; /* --accent */
+  color: #020d0c; /* --text */
+}
+button:where(#image-processing button:not(#embed-btn, #extract-btn)):hover {
+  background-color: #4a6bd2; /* Темніший відтінок */
+}
+
+#download-btn {
+  background-color: #8cbaf3; /* --secondary */
+  color: #020d0c; /* --text */
+  display: none;
+}
+#download-btn:hover {
+  background-color: #6e9ad7; /* Темніший відтінок */
+}
+
+#logout-btn {
+
+  background-color: #ff6b6b; /* Контрастний червоний */
+  color: #ffffff;
+  width:30vw;
+}
+#logout-btn:hover {
+  background-color: #e63946; /* Темніший червоний */
+}
+#info-section {
+  display:flex;
+  justify-content: center;
+  gap:10px;
+  margin-top: 20px;
+  border: 1px solid #8cbaf3; /* --secondary */
+  border-radius: 8px;
+  color: #020d0c; /* --text */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(2, 13, 12, 0.6); /* Напівпрозорий --text */
+  z-index: 999;
+}
+
+.modal-content {
+  background: #8cbaf3; /* --secondary */
+  margin: 10% auto;
+  padding: 25px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(92, 130, 238, 0.2);
+  color: #020d0c; /* --text */
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #020d0c; /* --text */
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #2eeace; /* --primary */
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  #auth-section, #main-section, #history-section {
+    max-width: 90%;
+  }
+}

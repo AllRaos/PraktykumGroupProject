@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="wrapper">
+    <section id="auth-section">
+    <div >
+      <h1>Авторизація</h1>
+      <div id="login-form">
+        <input type="text" id="username" placeholder="Ім'я користувача" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button id="login-btn">Увійти</button>
+        <button id="register-btn">Зареєструватися</button>
+    </div>
+    <div id="register-form">
+      <input type="text" id="reg-username" placeholder="Ім'я користувача" required>
+      <input type="password" id="reg-password" placeholder="Пароль" required>
+      <button id="registr-btn">Зареєструватися</button>
+      <button id="showLog-btn">Назад до входу</button>
+    </div>
+  </div>
+  </section>
+  <section id="main-section">
+   <div>
+    <h2>Вітаємо!</h2>
+    <p class="log-status">Ви успішно увійшли.</p>
+    <div id="image-processing">
+      <h3>Обробка зображення</h3>
+      <input placeholder="need .bmp File"type="file" id="image-input" accept=".bmp">
+      <h4>Зображення, з якими можна працювати:</h4>
+      <ul id="workable-files-list"></ul>
+      <select title="nd" id="transform-method">
+        <option value="solar-rays">Ефект «сонячних променів»</option>
+        <option value="flower-pattern">Тригонометричний квітковий візерунок</option>
+        <option value="digital-rain">Цифровий дощ</option>
+      </select>
+      <select title="ki" id="color-combo">
+        <option value="rgb">RGB</option>
+        <option value="grayscale">Градації сірого</option>
+        <option value="sepia">Сепія</option>
+      </select>
+      <textarea id="message-input" placeholder="Повідомлення для вкладення"></textarea>
+      <button id="embed-btn">Вкласти повідомлення</button>
+      <button id="extract-btn">Витягти повідомлення</button>
+      <button id="process-btn">Обробити зображення</button>
+      <button id="download-btn">Завантажити результат</button>
+      <div id="extracted-message">
+        <strong>Витягнуте повідомлення:</strong>
+        <span id="extracted-text"></span>
+      </div>
+      <canvas id="result-canvas"></canvas>
+    </div>
+
+    <div id="history-section">
+      <h3>Історія</h3>
+      <div>
+        <h4>Останні файли:</h4>
+        <ul id="files-list"></ul>
+      </div>
+      <div>
+        <h4>Останні методи трансформації:</h4>
+        <ul id="transformMethods-list"></ul>
+      </div>
+      <div>
+        <h4>Останні вкладені повідомлення:</h4>
+        <ul id="embeddedMessages-list"></ul>
+      </div>
+      <div>
+        <h4>Останні витягнуті повідомлення:</h4>
+        <ul id="extractedMessages-list"></ul>
+      </div>
+    </div>
+
+    <div id="info-section">
+      <button id="user-guide-btn">Інструкція користувача</button>
+      <button id="about-app-btn">Про програму</button>
+      <button id="about-authors-btn">Про авторів</button>
+    </div>
+
+    <div id="info-section">
+      <button id="logout-btn">Вийти</button>
+    </div>
+  </div>
+  </section>
+  </div>
+  <div id="modal-instruction" class="modal">
+  <div id="modal">
+  <div class="modal-content">
+    <span id="modal-close" class="modal-close">✖</span>
+    <h3 id="modal-title"></h3>
+    <p id="modal-content"></p>
+  </div>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bmp-js@0.1.0/dist/bmp.js"></script>
+  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/auth.js"></script>
+  <script type="module" src="./src/imageProcessing.js"></script>
+  <script type="module" src="./src/footer.js"></script>
+</body>
+</html>
