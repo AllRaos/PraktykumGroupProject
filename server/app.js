@@ -12,7 +12,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 
-// Налаштування multer для зберігання файлів
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -23,10 +22,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Ендпоінт для авторизації
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  // Перевірка на порожні поля
   if (!username || !password) {
     return res.status(400).json({ success: false, message: 'Ім’я користувача та пароль не можуть бути порожніми' });
   }
@@ -38,27 +35,22 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Ендпоінт для реєстрації з перевірками
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
-  // Перевірка на порожні поля
   if (!username || !password) {
     return res.status(400).json({ success: false, message: 'Ім’я користувача та пароль не можуть бути порожніми' });
   }
 
-  // Перевірка формату імені користувача (лише букви, цифри, підкреслення)
   const usernameRegex = /^[a-zA-Z0-9_]+$/;
   if (!usernameRegex.test(username)) {
     return res.status(400).json({ success: false, message: 'Ім’я користувача може містити лише букви, цифри та символи підкреслення' });
   }
 
-  // Перевірка довжини імені користувача
   if (username.length < 3 || username.length > 20) {
     return res.status(400).json({ success: false, message: 'Ім’я користувача має бути від 3 до 20 символів' });
   }
 
-  // Перевірка довжини пароля
   if (password.length < 6) {
     return res.status(400).json({ success: false, message: 'Пароль має бути щонайменше 6 символів' });
   }
@@ -76,7 +68,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Ендпоінт для завантаження файлів
 app.post('/upload', upload.single('file'), async (req, res) => {
   const file = req.file;
   const username = req.body.username;
@@ -105,7 +96,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   res.json({ success: true, message: 'Файл успішно завантажено' });
 });
 
-// Ендпоінт для отримання останніх файлів
 app.get('/files/:username', async (req, res) => {
   const username = req.params.username;
   if (!username) {
@@ -123,7 +113,6 @@ app.get('/files/:username', async (req, res) => {
   res.json(files.map(file => file.filePath));
 });
 
-// Ендпоінти для recent і actions
 app.get('/recent/:username', async (req, res) => {
   const username = req.params.username;
   if (!username) {
@@ -213,7 +202,6 @@ app.get('/actions/:username', async (req, res) => {
   res.json(data);
 });
 
-// Синхронізація бази даних і запуск сервера
 sequelize.sync({ force: true }).then(() => {
   console.log('Database synced');
   app.listen(PORT, () => {

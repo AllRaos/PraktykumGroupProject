@@ -17,10 +17,8 @@ export function handleImageUpload(event, saveRecent, saveAction) {
         currentImage = img;
         saveRecent('files', file.name);
         saveAction('files', file.name);
-        // Зберігаємо в localStorage
         localStorage.setItem('lastImageDataURL', e.target.result);
         localStorage.setItem('lastImageName', file.name);
-        // Відображаємо зображення на канві
         const canvas = document.getElementById('result-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = img.width;
@@ -72,14 +70,12 @@ export function loadImageFromPath(filePath) {
   const img = new Image();
   img.onload = function() {
     currentImage = img;
-    // Відображаємо зображення на канві
     const canvas = document.getElementById('result-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
     canvas.style.display = 'block';
-    // Зберігаємо в localStorage
     localStorage.setItem('lastImageDataURL', img.src);
     localStorage.setItem('lastImageName', filePath.split('/').pop());
   };
@@ -88,7 +84,7 @@ export function loadImageFromPath(filePath) {
   };
   img.src = '/server/' + filePath;
 }
-// Решта коду залишається без змін
+
 export function processImage(saveRecent, saveAction) {
   if (!currentImage) {
     alert('Спочатку виберіть зображення.');

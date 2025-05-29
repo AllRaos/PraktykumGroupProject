@@ -18,18 +18,16 @@ import {
 } from './imageProcessing.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Запобігаємо відправленню форми
   const imageForm = document.getElementById('image-form');
   if (imageForm) {
     imageForm.addEventListener('submit', (e) => {
-      e.preventDefault(); // Зупиняємо стандартне відправлення форми
+      e.preventDefault();
     });
   }
 
   checkLoginStatus(loadUserPreferences, () => {
     loadUserActions();
     loadUserFiles(currentUsername);
-    // Відновлюємо останнє зображення з localStorage
     const lastImageDataURL = localStorage.getItem('lastImageDataURL');
     if (lastImageDataURL) {
       const img = new Image();
@@ -56,7 +54,6 @@ document.getElementById('image-input').addEventListener('change', e => handleIma
 document.getElementById('embed-btn').addEventListener('click', embedMessage);
 document.getElementById('extract-btn').addEventListener('click', extractMessage);
 
-// Завантаження та відображення останніх файлів при вході
 async function loadUserFiles(username) {
   try {
     const response = await fetch(`http://localhost:3000/files/${username}`);
@@ -66,7 +63,6 @@ async function loadUserFiles(username) {
     list.innerHTML = '';
     workableList.innerHTML = '';
     files.forEach(filePath => {
-      // Для списку "Останні файли" показуємо повний шлях
       const li = document.createElement('li');
       li.classList.add('point');
       li.textContent = filePath;
@@ -77,7 +73,6 @@ async function loadUserFiles(username) {
       });
       list.appendChild(li);
 
-      // Для списку "Зображення, з якими можна працювати" показуємо лише назву файлу
       const workableLi = document.createElement('li');
       workableLi.classList.add('point');
       workableLi.textContent = filePath.split('/').pop();
@@ -88,7 +83,6 @@ async function loadUserFiles(username) {
       });
       workableList.appendChild(workableLi);
     });
-    // Завантажуємо останнє збережене зображення, якщо воно є
     const lastImageName = localStorage.getItem('lastImageName');
     if (lastImageName && files.includes(lastImageName)) {
       loadImageFromPath(lastImageName);
@@ -100,7 +94,6 @@ async function loadUserFiles(username) {
   }
 }
 
-// Оновлюємо login для завантаження файлів
 document.getElementById('login-btn').addEventListener('click', () => {
   login(loadUserPreferences, () => {
     loadUserActions();
@@ -108,7 +101,6 @@ document.getElementById('login-btn').addEventListener('click', () => {
   });
 });
 
-// Решта коду залишається без змін
 async function embedMessage() {
   const canvas = document.getElementById('result-canvas');
   if (canvas.style.display === 'none' || !canvas.width || !canvas.height) {
@@ -117,7 +109,7 @@ async function embedMessage() {
 
   const message = document.getElementById('message-input').value;
   if (!message) return alert('Введіть повідомлення для вкладення.');
-  if (message.includes('$wow$end$')) return alert('Повідомлення не може містити службовий маркер "$wow$end$".');
+  if (message.includes('$wow$end$')) return alert('Повідомлення не може містити службовий маркер.');
 
   const ctx = canvas.getContext('2d');
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -158,7 +150,7 @@ async function embedMessage() {
 
   await saveRecent('embeddedMessages', message);
   await saveAction('embeddedMessages', message);
-  await loadUserActions(); // Оновлюємо список дій після збереження
+  await loadUserActions();
 }
 
 async function extractMessage() {
@@ -207,7 +199,7 @@ async function extractMessage() {
 
   await saveRecent('extractedMessages', message);
   await saveAction('extractedMessages', message);
-  await loadUserActions(); // Оновлюємо список дій після збереження
+  await loadUserActions();
 }
 
 export async function saveRecent(type, value) {

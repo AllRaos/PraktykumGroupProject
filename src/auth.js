@@ -28,7 +28,7 @@ export async function login(loadUserPreferences, loadUserActions) {
     const data = await response.json();
     if (data.success) {
       currentUsername = username;
-      localStorage.setItem('isLoggedIn', 'true'); // Зберігаємо стан авторизації
+      localStorage.setItem('isLoggedIn', 'true');
       showSection('main');
       loadUserPreferences(username);
       loadUserActions();
@@ -69,8 +69,8 @@ export function getCurrentUsername() {
 
 export function logout() {
   currentUsername = null;
-  localStorage.removeItem('isLoggedIn'); // Видаляємо стан авторизації
-  localStorage.removeItem('username'); // Видаляємо ім'я користувача
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('username');
   document.getElementById('image-input').value = '';
   document.getElementById('result-canvas').style.display = 'none';
   document.getElementById('download-btn').style.display = 'none';
@@ -80,7 +80,6 @@ export function logout() {
   showLoginForm();
 }
 
-// Перевірка стану авторизації при завантаженні сторінки
 export function checkLoginStatus(loadUserPreferences, loadUserActions) {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
   const username = localStorage.getItem('username');

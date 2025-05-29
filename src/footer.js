@@ -23,5 +23,5 @@ function showModal(title, content) {
 
 document.getElementById('modal-close').addEventListener('click', () => {
   document.getElementById('modal').style.display = 'none';
-  document.getElementById('modal-instruction').style.display = 'block';
+  document.getElementById('modal-instruction').style.display = 'none';
 });
